@@ -8,26 +8,28 @@ use Illuminate\Http\Request;
 
 class SpacecraftController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
+
+
         $query = Spacecraft::select('id', 'name', 'status');
+
         if ($request->has('name')) {
             $ids = explode(",", $request->get('name'));
             $query = $query->whereIn('name', $ids);
         }
+
         if ($request->has('class')) {
             $ids = explode(",", $request->get('class'));
             $query = $query->whereIn('class', $ids);
         }
+
         if ($request->has('status')) {
             $ids = explode(",", $request->get('status'));
             $query = $query->whereIn('status', $ids);
         }
+
         $spacecrafts = $query->get();
 
         return $this->sendResponse($spacecrafts);
@@ -48,6 +50,8 @@ class SpacecraftController extends Controller
             'value' => 'required',
             'status' => 'required',
         ]);
+
+        //get posted image and save to public path
         if (isset($request->image)) {
             $image = $request->image;
             $imageName = str_random(20) . '.' . 'png';

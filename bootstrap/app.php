@@ -21,14 +21,21 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
+//Added to include Laravel Facades
 $app->withFacades();
 $app->withEloquent();
+
+//Service provide added to include all the artisan commands
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
+//Registsred service providers for authentication
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
+
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
+
 $app->configure('auth');
 /*
 |--------------------------------------------------------------------------

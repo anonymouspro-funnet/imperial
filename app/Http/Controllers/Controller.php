@@ -6,7 +6,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    public function sendResponse($result)
+    protected function sendResponse($result)
     {
 
         $response = [
@@ -15,7 +15,7 @@ class Controller extends BaseController
 
         return response()->json($response, 200);
     }
-    public function sendConfirmationResponse($value)
+    protected function sendConfirmationResponse($value)
     {
 
         $response = [
@@ -25,7 +25,7 @@ class Controller extends BaseController
 
         return response()->json($response, 200);
     }
-    public static function quickRandom($length = 16)
+    protected static function quickRandom($length = 16)
     {
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
